@@ -1,0 +1,154 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://assets/gino/idle/idle02.png" type="Texture" id=1]
+[ext_resource path="res://assets/gino/idle/idle05.png" type="Texture" id=2]
+[ext_resource path="res://assets/gino/idle/idle09.png" type="Texture" id=3]
+[ext_resource path="res://assets/gino/idle/idle08.png" type="Texture" id=4]
+[ext_resource path="res://assets/gino/idle/idle03.png" type="Texture" id=5]
+[ext_resource path="res://assets/gino/idle/idle06.png" type="Texture" id=6]
+[ext_resource path="res://assets/gino/idle/idle04.png" type="Texture" id=7]
+[ext_resource path="res://assets/gino/idle/idle07.png" type="Texture" id=8]
+[ext_resource path="res://assets/gino/run/run08.png" type="Texture" id=9]
+[ext_resource path="res://assets/gino/run/run07.png" type="Texture" id=10]
+[ext_resource path="res://assets/gino/run/run05.png" type="Texture" id=11]
+[ext_resource path="res://assets/gino/run/run04.png" type="Texture" id=12]
+[ext_resource path="res://assets/gino/run/run06.png" type="Texture" id=13]
+[ext_resource path="res://assets/gino/run/run03.png" type="Texture" id=14]
+[ext_resource path="res://assets/gino/run/run01.png" type="Texture" id=15]
+[ext_resource path="res://assets/gino/run/run02.png" type="Texture" id=16]
+[ext_resource path="res://assets/gino/jump/jump_start01.png" type="Texture" id=17]
+[ext_resource path="res://assets/gino/jump/jump_start02.png" type="Texture" id=18]
+[ext_resource path="res://assets/gino/jump/jump_mid02.png" type="Texture" id=19]
+[ext_resource path="res://assets/gino/jump/jump_mid01.png" type="Texture" id=20]
+[ext_resource path="res://assets/gino/jump/jump_landing.png" type="Texture" id=21]
+[ext_resource path="res://assets/gino/jump/jump_mid04.png" type="Texture" id=22]
+[ext_resource path="res://assets/gino/jump/jump_mid03.png" type="Texture" id=23]
+[ext_resource path="res://scripts/player/gino.gd" type="Script" id=24]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 6.5, 16 )
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 1 ), ExtResource( 1 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 3 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "jump_landing"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 21 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "jump_loop"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 20 ), ExtResource( 19 ), ExtResource( 23 ), ExtResource( 22 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "jump_start"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 17 ), ExtResource( 18 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "run"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 9 ) ]
+}
+
+[node name="Gino" type="KinematicBody2D"]
+script = ExtResource( 24 )
+player_gravity = 150
+max_fall_speed = 250
+walk_speed = 150
+friction = 0.25
+acceleration = 0.15
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.5, 0 )
+shape = SubResource( 7 )
+
+[node name="Texture" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 20, 40, 50 )
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 1 )
+anims/idle = SubResource( 2 )
+anims/jump_landing = SubResource( 5 )
+anims/jump_loop = SubResource( 6 )
+anims/jump_start = SubResource( 4 )
+anims/run = SubResource( 3 )
