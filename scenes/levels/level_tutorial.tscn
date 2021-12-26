@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://resources/decoration_rocks.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/environment/parallax_background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://resources/floor.tres" type="TileSet" id=3]
 [ext_resource path="res://scenes/player/gino.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/grass.tres" type="TileSet" id=5]
+[ext_resource path="res://scenes/interface/interface.tscn" type="PackedScene" id=6]
 
 [node name="LevelTutorial" type="Node2D"]
 
@@ -23,7 +25,15 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 589849, 0, 0, 851966, 0, 0 )
 
+[node name="Grass" type="TileMap" parent="Tile"]
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 589850, 2, 0, 589851, 2, 0, 589858, 7, 0, 589866, 2, 0, 851967, 2, 0, 786439, 6, 0 )
+
 [node name="Gino" parent="." instance=ExtResource( 4 )]
 position = Vector2( 33, 30 )
 jump_speed = 250
 walk_speed = 125
+
+[node name="Interface" parent="." instance=ExtResource( 6 )]
