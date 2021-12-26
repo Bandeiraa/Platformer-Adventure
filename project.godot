@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "Dagger",
+"language": "GDScript",
+"path": "res://scripts/player/dagger.gd"
+}, {
 "base": "ParallaxBackground",
 "class": "Parallax",
 "language": "GDScript",
@@ -20,6 +25,7 @@ _global_script_classes=[ {
 "path": "res://scripts/player/gino.gd"
 } ]
 _global_script_class_icons={
+"Dagger": "",
 "Parallax": "",
 "Player": ""
 }

@@ -1,6 +1,7 @@
 extends KinematicBody2D
 class_name Player
 
+onready var throw_position: Position2D = get_node("ThrowPosition")
 onready var animation: AnimationPlayer = get_node("Animation")
 onready var sprite: Sprite = get_node("Texture")
 
@@ -13,6 +14,8 @@ var current_ground_attack: int = 1
 
 var can_anim_move: bool = true
 var can_attack: bool = true
+
+export(PackedScene) var dagger_scene
 
 export(bool) var on_hit = false
 export(bool) var on_jump = false
@@ -83,12 +86,22 @@ func gravity(delta: float) -> void:
 			
 			
 func jump() -> void:
+	if is_on_floor():
+		can_attack = true
+		
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		on_jump = true
 		yield(get_tree().create_timer(0.1), "timeout")
 		velocity.y = -jump_speed
 		
 		
+func throw_dagger() -> void:
+	var dagger: Dagger = dagger_scene.instance()
+	dagger.direction = sign(throw_position.position.x)
+	dagger.global_position = throw_position.global_position
+	get_tree().root.call_deferred("add_child", dagger)
+	
+	
 func animation_manager() -> void:
 	verify_direction()
 	if (velocity.y != 0 or on_jump) and not on_hit and not on_attack:
@@ -101,8 +114,10 @@ func animation_manager() -> void:
 		
 func verify_direction() -> void:
 	if velocity.x > 0:
+		throw_position.position = Vector2(15, 15)
 		sprite.flip_h = false
 	elif velocity.x < 0:
+		throw_position.position = Vector2(-15, 15)
 		sprite.flip_h = true
 		
 		
@@ -142,5 +157,4 @@ func on_animation_finished(anim_name: String) -> void:
 			animation.play("jump_loop")
 			
 		"jump_landing":
-			can_attack = true
 			can_anim_move = true
