@@ -1,7 +1,27 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://resources/decoration_rocks.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/environment/parallax_background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://resources/floor.tres" type="TileSet" id=3]
+[ext_resource path="res://scenes/player/gino.tscn" type="PackedScene" id=4]
 
 [node name="LevelTutorial" type="Node2D"]
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 2 )]
+
+[node name="Tile" type="Node2D" parent="."]
+
+[node name="Rock" type="TileMap" parent="Tile"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 458791, 6, 0, 589852, 8, 0, 589856, 1, 0, 589861, 1, 0, 589868, 6, 0, 786433, 3, 0, 786436, 8, 0, 786446, 8, 0 )
+
+[node name="Floor" type="TileMap" parent="Tile"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 589849, 0, 0, 851966, 0, 0 )
+
+[node name="Gino" parent="." instance=ExtResource( 4 )]
+position = Vector2( 33, 30 )

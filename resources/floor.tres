@@ -1,0 +1,29 @@
+[gd_resource type="TileSet" load_steps=3 format=2]
+
+[ext_resource path="res://assets/tile/main_lev_build.png" type="Texture" id=1]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( 10, 18, 13, 18, 13, 17, 16, 17, 16, 16, 89, 16, 151, 16, 249, 16, 352, 16, 352, 17, 355, 17, 355, 18, 358, 18, 358, 23, 356, 28, 356, 35, 356, 96, 359, 98, 359, 100, 357, 105, 354, 109, 354, 117, 351, 124, 347, 127, 339, 127, 339, 128, 338, 131, 335, 136, 332, 136, 332, 137, 331, 138, 326, 139, 316, 140, 313, 142, 306, 144, 294, 146, 224, 146, 144, 146, 71, 146, 62, 144, 53, 141, 37, 138, 33, 136, 30, 131, 29, 128, 21, 127, 18, 125, 17, 124, 14, 117, 11, 105, 9, 100, 9, 98, 13, 94, 13, 80, 12, 56, 12, 51, 12, 32, 10, 23 )
+
+[resource]
+0/name = "big_floor_block"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 64, 16, 368, 160 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape = SubResource( 1 )
+0/shape_one_way = false
+0/shape_one_way_margin = 1.0
+0/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
+0/z_index = 0
