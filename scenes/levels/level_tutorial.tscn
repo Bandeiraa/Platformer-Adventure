@@ -25,3 +25,5 @@ tile_data = PoolIntArray( 589849, 0, 0, 851966, 0, 0 )
 
 [node name="Gino" parent="." instance=ExtResource( 4 )]
 position = Vector2( 33, 30 )
+jump_speed = 250
+walk_speed = 125

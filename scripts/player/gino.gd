@@ -7,12 +7,16 @@ onready var sprite: Sprite = get_node("Texture")
 var velocity: Vector2
 
 var previous_animation: String
+var current_attack_animation: String
+
+var current_ground_attack: int = 1
 
 var can_anim_move: bool = true
+var can_attack: bool = true
 
 export(bool) var on_hit = false
 export(bool) var on_jump = false
-export(bool) var on_attacking = false
+export(bool) var on_attack = false
 
 export(int) var jump_speed
 export(int) var player_gravity
@@ -26,6 +30,7 @@ export(float) var acceleration
 
 func _physics_process(delta: float) -> void:
 	move()
+	attack()
 	gravity(delta)
 	velocity = move_and_slide(velocity, Vector2.UP)
 	jump()
@@ -46,6 +51,31 @@ func get_horizontal_movement() -> float:
 	)
 	
 	
+func attack() -> void:
+	if Input.is_action_just_pressed("throw_dagger") and can_attack:
+		handle_attack("throw_dagger")
+	elif Input.is_action_just_pressed("attack") and is_on_floor():
+		handle_attack("ground_attack")
+	elif Input.is_action_just_pressed("attack") and not is_on_floor() and can_attack:
+		handle_attack("jump_attack")
+		
+		
+func handle_attack(attack_type: String) -> void:
+	if attack_type == "ground_attack":
+		current_attack_animation = "ground_attack_" + str(current_ground_attack)
+		current_ground_attack += 1
+		
+		if current_ground_attack == 5:
+			current_ground_attack = 1
+			
+	else:
+		current_attack_animation = attack_type
+		can_attack = false
+		
+	set_physics_process(false)
+	on_attack = true
+	
+	
 func gravity(delta: float) -> void:
 	velocity.y += player_gravity * delta
 	if velocity.y >= max_fall_speed:
@@ -61,9 +91,11 @@ func jump() -> void:
 		
 func animation_manager() -> void:
 	verify_direction()
-	if (velocity.y != 0 or on_jump) and not on_hit and not on_attacking:
+	if (velocity.y != 0 or on_jump) and not on_hit and not on_attack:
 		jump_animation()
-	elif not on_hit and not on_attacking:
+	elif on_attack and not on_hit:
+		attack_animation()
+	elif not on_hit and not on_attack:
 		move_animation()
 		
 		
@@ -84,6 +116,10 @@ func jump_animation() -> void:
 		previous_animation = "jump_loop"
 		
 		
+func attack_animation() -> void:
+	animation.play(current_attack_animation)
+	
+	
 func move_animation() -> void:
 	handle_previous_animation()
 	if (abs(velocity.x) > min_walk_threshold) and can_anim_move:
@@ -95,10 +131,9 @@ func move_animation() -> void:
 func handle_previous_animation() -> void:
 	match previous_animation:
 		"jump_loop":
-			if previous_animation == "jump_loop":
-				animation.play("jump_landing")
-				previous_animation = "jump_landing"
-				return
+			animation.play("jump_landing")
+			previous_animation = "jump_landing"
+			return
 				
 				
 func on_animation_finished(anim_name: String) -> void:
@@ -107,4 +142,5 @@ func on_animation_finished(anim_name: String) -> void:
 			animation.play("jump_loop")
 			
 		"jump_landing":
+			can_attack = true
 			can_anim_move = true

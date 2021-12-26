@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/throw_dagger_hit02.png-6f524b1283ced1f910fcf0b4a5af2ae0.stex"
+path="res://.import/ground_attack_3.png-83167292e82d112c8c8655363f655ee2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gino/throw_dagger/throw_dagger_hit02.png"
-dest_files=[ "res://.import/throw_dagger_hit02.png-6f524b1283ced1f910fcf0b4a5af2ae0.stex" ]
+source_file="res://assets/gino/attack/ground_attack_3.png"
+dest_files=[ "res://.import/ground_attack_3.png-83167292e82d112c8c8655363f655ee2.stex" ]
 
 [params]
 
