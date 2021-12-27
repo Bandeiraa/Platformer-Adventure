@@ -1,9 +1,10 @@
 extends KinematicBody2D
-class_name Player
+class_name Gino
 
 onready var throw_position: Position2D = get_node("ThrowPosition")
 onready var animation: AnimationPlayer = get_node("Animation")
 onready var sprite: Sprite = get_node("Texture")
+onready var stats: Node = get_node("Stats")
 
 var velocity: Vector2
 

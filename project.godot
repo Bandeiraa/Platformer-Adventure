@@ -14,26 +14,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/player/dagger.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Gino",
+"language": "GDScript",
+"path": "res://scripts/player/gino.gd"
+}, {
 "base": "ParallaxBackground",
 "class": "Parallax",
 "language": "GDScript",
 "path": "res://scripts/environments/parallax_background.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "Player",
-"language": "GDScript",
-"path": "res://scripts/player/gino.gd"
 } ]
 _global_script_class_icons={
 "Dagger": "",
-"Parallax": "",
-"Player": ""
+"Gino": "",
+"Parallax": ""
 }
 
 [application]
 
 config/name="Platformer Adventure"
 config/icon="res://icon.png"
+
+[autoload]
+
+Interface="*res://scenes/interface/interface.tscn"
 
 [display]
 
